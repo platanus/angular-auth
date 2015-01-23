@@ -30,8 +30,8 @@ gulp.task('build', ['lint'], function() {
 });
 
 gulp.task('bump', function () {
-  return gulp.src(['./bower.json', './component.json'])
-    .pipe(bump({version: pkg.version}))
+  return gulp.src(['./bower.json', './package.json'])
+    .pipe(bump({type: gulp.env.type}))
     .pipe(gulp.dest('./'));
 });
 
