@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
-    rename = require('gulp-rename'),
+    concat = require('gulp-concat'),
     bump = require('gulp-bump'),
     notify = require('gulp-notify'),
     git = require('gulp-git'),
@@ -21,11 +21,12 @@ gulp.task('lint', function() {
 });
 
 gulp.task('build', ['lint'], function() {
-  return gulp.src(source)
-    .pipe(rename(sourceMin))
-    .pipe(uglify({preserveComments: 'some'}))
+  return gulp.src(paths.src)
+    .pipe(uglify())
+    .pipe(concat(sourceMin))
     .pipe(size())
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('dist'))
+    .pipe(notify('Build finished'));
 });
 
 gulp.task('bump', function () {
