@@ -1,0 +1,17 @@
+{
+  "name": "platanus-angular-auth",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">= 0.9"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "^0.12.28",
+    "karma-mocha": "^0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sinon-chai": "^0.2.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start --single-run --no-auto-watch --browsers PhantomJS"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "platanus-angular-auth",
+  "version": "0.0.1",
+  "authors": [
+    "Emilio Blanco <emilioeduardob@gmail.com>",
+    "Leandro Segovia <ldlsegovia@gmail.com>"
+  ],
+  "description": "Authenication library for angular",
+  "license": "MIT",
+  "homepage": "https://github.com/platanus/angular-auth",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/platanus/angular-auth.git"
+  },
+  "main": "./dist/angular-auth.min.js",
+  "ignore": [
+    "**/.*",
+    "karma.conf.js",
+    "package.json",
+    "test",
+    "src"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.27",
+    "angular-mocks": "~1.2.27",
+    "angular-restmod": "~1.1.7"
+  }
+}
