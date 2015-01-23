@@ -5,11 +5,11 @@ var gulp = require('gulp'),
     bump = require('gulp-bump'),
     notify = require('gulp-notify'),
     git = require('gulp-git'),
-    size = require('gulp-size'),
-    pkg = require('./package.json');
+    size = require('gulp-size');
 
 var paths = {
-  src: ['./src/*.js']
+  src: ['./src/*.js'],
+  dist: ['./dist/*.js'],
 };
 
 var sourceMin = 'angular-auth.min.js';
@@ -35,10 +35,11 @@ gulp.task('bump', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('tag', ['bump'], function () {
-  return gulp.src('./')
-    .pipe(git.commit('Version '+pkg.version))
-    .pipe(git.tag(pkg.version, 'Version '+pkg.version))
-    .pipe(git.push('monkee', 'master', '--tags'))
-    .pipe(gulp.dest('./'));
+gulp.task('publish',['bump'], function () {
+  var pkg = require('./package.json');
+  var msg = 'Bumps version '+pkg.version;
+  gulp.src('./*.json')
+    .pipe(git.add())
+    .pipe(git.commit(msg))
+    .pipe(git.tag('v'+pkg.version, msg, function(){}));
 });
