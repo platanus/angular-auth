@@ -14,10 +14,21 @@
   "regexp": true,
   "undef": true,
   "unused": true,
-  "strict": true,
+  "strict": false,
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": true
+    "angular": false,
+    /* MOCHA */
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false,
+    "module": false,
+    "inject": false,
+    "expect": false,
+    "require": false
   }
 }

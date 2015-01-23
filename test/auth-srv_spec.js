@@ -13,13 +13,13 @@ describe('AuthSrv', function() {
   describe('#isLogged', function() {
 
     it('returns true with uid and token set', function() {
-      var authData = {uid: "charles@manson.com", token: "XXX"};
+      var authData = {uid: 'charles@manson.com', token: 'XXX'};
       AuthSrv.store(authData);
       expect(AuthSrv.isLogged()).to.be.true;
     });
 
     it('returns false without token set', function() {
-      var authData = {uid: "charles@manson.com"};
+      var authData = {uid: 'charles@manson.com'};
       AuthSrv.store(authData);
       expect(AuthSrv.isLogged()).to.be.false;
     });
@@ -29,7 +29,7 @@ describe('AuthSrv', function() {
   describe('#isRegistered', function() {
 
     it('returns true with uid set', function() {
-      var authData = {uid: "charles@manson.com"};
+      var authData = {uid: 'charles@manson.com'};
       AuthSrv.store(authData);
       expect(AuthSrv.isRegistered()).to.be.true;
     });
@@ -43,9 +43,9 @@ describe('AuthSrv', function() {
   describe('#getAuthorizationHeader', function() {
 
     it('returns valid header', function() {
-      var authData = {uid: "charles@manson.com", token: "XXX"};
+      var authData = {uid: 'charles@manson.com', token: 'XXX'};
       AuthSrv.store(authData);
-      var expectedHeader = "token=XXX uid=charles@manson.com";
+      var expectedHeader = 'token=XXX uid=charles@manson.com';
       expect(AuthSrv.getAuthorizationHeader()).to.equal(expectedHeader);
     });
 
@@ -54,23 +54,23 @@ describe('AuthSrv', function() {
   describe('#store', function () {
 
     it('stores the token', function() {
-      var authData = {uid: "charles@manson.com", token: "XXX"};
+      var authData = {uid: 'charles@manson.com', token: 'XXX'};
       AuthSrv.store(authData);
       expect(localStorage.getItem('token')).to.equal('XXX');
     });
 
     it('throws an exception if is not an {}', function() {
-      expect(function() { AuthSrv.store("XXX"); }).to.throw(Error);
+      expect(function() { AuthSrv.store('XXX'); }).to.throw(Error);
     });
 
     it('stores the uid', function() {
-      var authData = {uid: "charles@manson.com", token: ""};
+      var authData = {uid: 'charles@manson.com', token: ''};
       AuthSrv.store(authData);
       expect(localStorage.getItem('uid')).to.equal('charles@manson.com');
     });
 
     it('throws an exception if only token was passed', function() {
-      expect(function() { AuthSrv.store({token: "XXX"}); }).to.throw(Error);
+      expect(function() { AuthSrv.store({token: 'XXX'}); }).to.throw(Error);
     });
 
   });

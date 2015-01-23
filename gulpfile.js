@@ -17,7 +17,7 @@ var sourceMin = 'angular-auth.min.js';
 gulp.task('lint', function() {
   return gulp.src(paths.src)
     .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('build', ['lint'], function() {
