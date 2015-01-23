@@ -3,8 +3,6 @@
 
   angular.module('PlAuth')
   .factory('LocalDataSrv', function() {
-    var KEY_NAME = 'app_key';
-
     var eraseKey = function(_key) {
       delete window.localStorage[_key];
     };
