@@ -31,6 +31,6 @@
     this.$get = function() {
       return new AuthConfig();
     };
-  };
+  }
 }());
 
