@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Angular-auth : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Angular-auth</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/platanus/angular-auth">View on GitHub</a>
+
+          <h1 id="project_title">Angular-auth</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/platanus/angular-auth/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/platanus/angular-auth/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="angular-auth" class="anchor" href="#angular-auth" aria-hidden="true"><span class="octicon octicon-link"></span></a>Angular Auth</h1>
+
+<p>Library to help integrate Token Authentication between Angularjs and json API</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Install the bower package.</p>
+
+<div class="highlight highlight-shell"><pre>$ bower install platanus-angular-auth</pre></div>
+
+<p>Include the JS file in your project and add the module as an Angular Dependency</p>
+
+<div class="highlight highlight-javascript"><pre>angular.module(<span class="pl-s1"><span class="pl-pds">'</span>yourapp<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>PlAuth<span class="pl-pds">'</span></span>]);</pre></div>
+
+<h2>
+<a id="using" class="anchor" href="#using" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using</h2>
+
+<p>The library includes a service called <code>AuthSrv</code> and a Restmod Mixing called <code>HttpAuth</code>.
+You can use <code>AuthSrv</code> to store a user's credentials and check the status of those credentials.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// Creating a session using a Restmod Model called Session</span>
+Session.$create().$then(<span class="pl-st">function</span>(<span class="pl-vpf">data</span>) {
+  AuthSrv.store(data);
+});</pre></div>
+
+<p>The store function would look for an <code>uid</code> and <code>token</code> property on the response and persist if they have values.</p>
+
+<p>Then if your Restmod Models use the <code>HttpAuth</code> mixing, the library will add an Authorization header on each request like this:</p>
+
+<pre><code>{'Authorization': token=ABC uid=userid }
+</code></pre>
+
+<h2>
+<a id="config" class="anchor" href="#config" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config</h2>
+
+<p>You can change default uid and token using <code>AuthConfigProvider</code> like this:</p>
+
+<div class="highlight highlight-javascript"><pre>angular.module(<span class="pl-s1"><span class="pl-pds">'</span>yourapp<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>PlAuth<span class="pl-pds">'</span></span>]).config(<span class="pl-st">function</span>(<span class="pl-vpf">AuthConfigProvider</span>){
+  AuthConfigProvider.setUidKey(<span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>);
+  AuthConfigProvider.setTokenKey(<span class="pl-s1"><span class="pl-pds">'</span>auth_token<span class="pl-pds">'</span></span>);
+});</pre></div>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a id="authsrv" class="anchor" href="#authsrv" aria-hidden="true"><span class="octicon octicon-link"></span></a>AuthSrv</h3>
+
+<h4>
+<a id="islogged" class="anchor" href="#islogged" aria-hidden="true"><span class="octicon octicon-link"></span></a>isLogged()</h4>
+
+<p>Returns if the session is logged</p>
+
+<h4>
+<a id="isregistered" class="anchor" href="#isregistered" aria-hidden="true"><span class="octicon octicon-link"></span></a>isRegistered()</h4>
+
+<p>Returns true or false whether we have an <code>uid</code> persisted</p>
+
+<h4>
+<a id="storeobject" class="anchor" href="#storeobject" aria-hidden="true"><span class="octicon octicon-link"></span></a>store(object)</h4>
+
+<p>Saves <code>uid</code> and <code>token</code> from a given <code>object</code> on LocalStorage</p>
+
+<h4>
+<a id="clear" class="anchor" href="#clear" aria-hidden="true"><span class="octicon octicon-link"></span></a>clear()</h4>
+
+<p>Removes <code>uid</code> and <code>token</code> from LocalStorage</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Angular-auth maintained by <a href="https://github.com/platanus">platanus</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
