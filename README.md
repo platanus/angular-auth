@@ -1,7 +1,7 @@
 Angular Auth
 ============
 
-Library to help integrate Token Authentication between Angularjs and Rails
+Library to help integrate Token Authentication between Angularjs and json API
 
 ## Installation
 
@@ -53,3 +53,7 @@ Returns true or false whether we have an `uid` persisted
 #### store(object)
 
 Saves `uid` and `token` from a given `object` on LocalStorage
+
+#### clear()
+
+Removes `uid` and `token` from LocalStorage

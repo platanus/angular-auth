@@ -10,6 +10,7 @@
   function AuthSrv(LocalDataSrv) {
     var service = {
       store: store,
+      clear: clear,
       isLogged: isLogged,
       isRegistered: isRegistered,
       getAuthorizationHeader: getAuthorizationHeader
@@ -46,6 +47,11 @@
       if (_authData.uid) {
         LocalDataSrv.setKey('uid', _authData.uid);
       }
+    }
+
+    function clear() {
+      LocalDataSrv.eraseKey('uid');
+      LocalDataSrv.eraseKey('token');
     }
   }
 

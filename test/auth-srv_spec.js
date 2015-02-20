@@ -74,4 +74,16 @@ describe('AuthSrv', function() {
     });
 
   });
+
+  describe('#clear', function () {
+
+    it('clears uid and token', function() {
+      var authData = {uid: 'charles@manson.com', token: 'XXX'};
+      AuthSrv.store(authData);
+      AuthSrv.clear();
+      expect(localStorage.getItem('uid')).to.be.null;
+      expect(localStorage.getItem('token')).to.be.null;
+    });
+
+  });
 });
