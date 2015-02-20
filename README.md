@@ -37,6 +37,16 @@ Then if your Restmod Models use the `HttpAuth` mixing, the library will add an A
 {'Authorization': token=ABC uid=userid }
 ```
 
+## Config
+
+You can change default uid and token using `AuthConfigProvider` like this:
+
+```javascript
+angular.module('yourapp', ['PlAuth']).config(function(AuthConfigProvider){
+  AuthConfigProvider.setUidKey('email');
+  AuthConfigProvider.setTokenKey('auth_token');
+});
+```
 
 ## API
 

@@ -5,9 +5,9 @@
     .module('PlAuth')
     .service('AuthSrv', AuthSrv);
 
-  AuthSrv.$inject = ['LocalDataSrv'];
+  AuthSrv.$inject = ['LocalDataSrv', 'AuthConfig'];
 
-  function AuthSrv(LocalDataSrv) {
+  function AuthSrv(LocalDataSrv, AuthConfig) {
     var service = {
       store: store,
       clear: clear,
@@ -15,6 +15,9 @@
       isRegistered: isRegistered,
       getAuthorizationHeader: getAuthorizationHeader
     };
+
+    var tokenKey = AuthConfig.getTokenKey();
+    var uidKey = AuthConfig.getUidKey();
 
     return service;
 
@@ -37,15 +40,15 @@
         throw new Error('an object was expected to store');
       }
 
-      if (_authData.token) {
-        if (!_authData.uid) {
-          throw new Error('A uid is need ');
+      if (_authData[tokenKey]) {
+        if (!_authData[uidKey]) {
+          throw new Error('A uid is need');
         }
-        LocalDataSrv.setKey('token', _authData.token);
+        LocalDataSrv.setKey('token', _authData[tokenKey]);
       }
 
-      if (_authData.uid) {
-        LocalDataSrv.setKey('uid', _authData.uid);
+      if (_authData[uidKey]) {
+        LocalDataSrv.setKey('uid', _authData[uidKey]);
       }
     }
 
