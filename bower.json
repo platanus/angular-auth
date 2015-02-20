@@ -21,8 +21,12 @@
     "src"
   ],
   "devDependencies": {
-    "angular": "~1.2.27",
-    "angular-mocks": "~1.2.27",
+    "angular": "~1",
+    "angular-mocks": "~1",
     "angular-restmod": "~1.1.7"
+  },
+  "dependencies": {
+    "angular": "~1",
+    "angular-restmod": "~1.1"
   }
 }
