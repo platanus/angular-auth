@@ -33,7 +33,17 @@
       <section id="main_content" class="inner">
         <h1>Live Demo</h1>
         <div ng-controller="ExampleCtrl as vm">
-          {{vm.notes | json}}
+          <p>User registered? {{vm.authSrv.isRegistered()}}</p>
+          <p>User logged? {{vm.authSrv.isLogged()}}</p>
+          <div ng-show="vm.notes.length > 0">
+            <p>Notes</p>
+            <pre>{{vm.notes | json}}</pre>
+            <p>Notice the request for notes will include the Authorization header if you are logged in.</p>
+          </div>
+          <button ng-click="vm.register()" ng-disabled="vm.authSrv.isLogged()">Register</button>
+          <button ng-click="vm.login()">Login</button>
+          <button ng-click="vm.logout()" ng-disabled="!vm.authSrv.isLogged()">logout</button>
+          <button ng-click="vm.getNotes()" ng-disabled="!vm.authSrv.isLogged()">Get Notes</button>
         </div>
       </section>
     </div>
