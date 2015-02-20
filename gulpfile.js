@@ -40,6 +40,9 @@ gulp.task('publish',['bump'], function () {
   var msg = 'Bumps version '+pkg.version;
   gulp.src('./*.json')
     .pipe(git.add())
-    .pipe(git.commit(msg))
-    .pipe(git.tag('v'+pkg.version, msg, function(){}));
+    .pipe(git.commit(msg));
+
+    setTimeout(function () {
+      git.tag('v'+pkg.version, msg, function(){});
+    }, 1000);
 });
