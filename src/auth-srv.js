@@ -16,6 +16,8 @@
       getAuthorizationHeaders: getAuthorizationHeaders
     };
 
+    var tokenHeaderName = AuthConfig.getTokenHeaderName();
+    var uidHeaderName = AuthConfig.getUidHeaderName();
     var tokenKey = AuthConfig.getTokenKey();
     var uidKey = AuthConfig.getUidKey();
 
@@ -33,8 +35,8 @@
 
     function getAuthorizationHeaders() {
       var headers = {};
-      headers['X-Auth-Email'] = LocalDataSrv.getKey('uid');
-      headers['X-Auth-Token'] = LocalDataSrv.getKey('token');
+      headers[uidHeaderName] = LocalDataSrv.getKey('uid');
+      headers[tokenHeaderName] = LocalDataSrv.getKey('token');
       return headers;
     }
 
