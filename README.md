@@ -61,7 +61,7 @@ angular.module('yourapp', ['PlAuth']).config(function(AuthConfigProvider){
 ## Live Demo
 
 Check out a live Demo using the library
-[Live Demo](http://platanus.github.io/angular-auth/demo.html)
+[Live Demo](http://platanus.github.io/angular-auth)
 
 ## API
 
