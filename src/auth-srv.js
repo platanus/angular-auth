@@ -13,9 +13,11 @@
       clear: clear,
       isLogged: isLogged,
       isRegistered: isRegistered,
-      getAuthorizationHeader: getAuthorizationHeader
+      getAuthorizationHeaders: getAuthorizationHeaders
     };
 
+    var tokenHeaderName = AuthConfig.getTokenHeaderName();
+    var uidHeaderName = AuthConfig.getUidHeaderName();
     var tokenKey = AuthConfig.getTokenKey();
     var uidKey = AuthConfig.getUidKey();
 
@@ -31,8 +33,11 @@
       return !!LocalDataSrv.getKey('uid');
     }
 
-    function getAuthorizationHeader() {
-      return 'token=' + LocalDataSrv.getKey('token') + ' uid=' + LocalDataSrv.getKey('uid');
+    function getAuthorizationHeaders() {
+      var headers = {};
+      headers[uidHeaderName] = LocalDataSrv.getKey('uid');
+      headers[tokenHeaderName] = LocalDataSrv.getKey('token');
+      return headers;
     }
 
     function store(_authData) {

@@ -8,6 +8,16 @@
   function AuthConfigProvider() {
     var uidKey = 'uid';
     var tokenKey = 'token';
+    var uidHeaderName = 'X-User-Email';
+    var tokenHeaderName = 'X-User-Token';
+
+    this.setTokenHeaderName = function(value) {
+      tokenHeaderName = value;
+    };
+
+    this.setUidHeaderName = function(value) {
+      uidHeaderName = value;
+    };
 
     this.setUidKey = function(value) {
       uidKey = value;
@@ -18,6 +28,14 @@
     };
 
     function AuthConfig() {
+
+      this.getUidHeaderName = function() {
+        return uidHeaderName;
+      };
+
+      this.getTokenHeaderName = function() {
+        return tokenHeaderName;
+      };
 
       this.getUidKey = function() {
         return uidKey;

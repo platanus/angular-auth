@@ -31,20 +31,30 @@ Session.$create().$then(function(data) {
 
 The store function would look for an `uid` and `token` property on the response and persist if they have values.
 
-Then if your Restmod Models use the `HttpAuth` mixing, the library will add an Authorization header on each request like this:
+Then if your [Restmod](https://github.com/platanus/angular-restmod) Models use the `HttpAuth` mixing, by default, the library will add an Authorization header on each request like this:
 
 ```
-{'Authorization': token=ABC uid=userid }
+'X-User-Email': 'alf@melmack.com'
+'X-User-Token': 'xxx'
 ```
 
 ## Config
 
-You can change default uid and token using `AuthConfigProvider` like this:
+You can change the default uid and token expected from server response using `AuthConfigProvider` like this:
 
 ```javascript
 angular.module('yourapp', ['PlAuth']).config(function(AuthConfigProvider){
   AuthConfigProvider.setUidKey('email');
   AuthConfigProvider.setTokenKey('auth_token');
+});
+```
+
+To change the default uid and token headers sent to the server you can do:
+
+```javascript
+angular.module('yourapp', ['PlAuth']).config(function(AuthConfigProvider){
+  AuthConfigProvider.setUidHeaderName('X-Admin-Email');
+  AuthConfigProvider.setTokenHeaderName('X-Admin-User');
 });
 ```
 

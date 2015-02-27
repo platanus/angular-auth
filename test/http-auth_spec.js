@@ -6,7 +6,7 @@ describe('HTTP Auth Mixin', function() {
   beforeEach(module(function ($provide) {
     AuthSrv = {
       isLogged: function() { return isLogged; },
-      getAuthorizationHeader: function() { return 'XXX'; }
+      getAuthorizationHeaders: function() { return {"X-Auth-Email": 'charles@manson.com', "A-Auth-Token": "XXX"}; }
     };
     $provide.value('AuthSrv', AuthSrv);
   }));
@@ -21,7 +21,7 @@ describe('HTTP Auth Mixin', function() {
     it('set restmod HTTP Header requests with Auth key', function () {
       isLogged = true;
       $httpBackend.expect('GET', 'bikes/1', undefined, function(headers) {
-        return headers['Authorization'] === 'XXX';
+        return AuthSrv.getAuthorizationHeaders();
       }).respond(201, '');
 
       var Bike = restmod.model('bikes').mix('HttpAuth');
@@ -33,7 +33,7 @@ describe('HTTP Auth Mixin', function() {
     it('does not set restmod HTTP Header requests if not logged in', function () {
       isLogged = false;
       $httpBackend.expect('GET', 'bikes/1', undefined, function(headers) {
-        return headers['Authorization'] === undefined;
+        return headers['X-Auth-Token'] === undefined;
       }).respond(201, '');
 
       var Bike = restmod.model('bikes').mix('HttpAuth');
