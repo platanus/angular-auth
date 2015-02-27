@@ -13,7 +13,7 @@
       clear: clear,
       isLogged: isLogged,
       isRegistered: isRegistered,
-      getAuthorizationHeader: getAuthorizationHeader
+      getAuthorizationHeaders: getAuthorizationHeaders
     };
 
     var tokenKey = AuthConfig.getTokenKey();
@@ -31,8 +31,11 @@
       return !!LocalDataSrv.getKey('uid');
     }
 
-    function getAuthorizationHeader() {
-      return 'token=' + LocalDataSrv.getKey('token') + ' uid=' + LocalDataSrv.getKey('uid');
+    function getAuthorizationHeaders() {
+      var headers = {};
+      headers['X-Auth-Email'] = LocalDataSrv.getKey('uid');
+      headers['X-Auth-Token'] = LocalDataSrv.getKey('token');
+      return headers;
     }
 
     function store(_authData) {

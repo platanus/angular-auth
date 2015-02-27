@@ -40,13 +40,15 @@ describe('AuthSrv', function() {
 
   });
 
-  describe('#getAuthorizationHeader', function() {
+  describe('#getAuthorizationHeaders', function() {
 
     it('returns valid header', function() {
       var authData = {uid: 'charles@manson.com', token: 'XXX'};
       AuthSrv.store(authData);
-      var expectedHeader = 'token=XXX uid=charles@manson.com';
-      expect(AuthSrv.getAuthorizationHeader()).to.equal(expectedHeader);
+      var expectedHeaders = {'X-Auth-Token': 'XXX', 'X-Auth-Email': 'charles@manson.com'};
+      var resultHeaders = AuthSrv.getAuthorizationHeaders();
+      expect(resultHeaders['X-Auth-Token']).to.equal(expectedHeaders['X-Auth-Token']);
+      expect(resultHeaders['X-Auth-Email']).to.equal(expectedHeaders['X-Auth-Email']);
     });
 
   });

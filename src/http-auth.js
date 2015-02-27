@@ -13,7 +13,7 @@
       // Adds api key to every request
       this.on('before-request', function(request) {
         if(AuthSrv.isLogged())
-          request.headers = angular.extend(request.headers || {}, { 'Authorization' : AuthSrv.getAuthorizationHeader() });
+          request.headers = angular.extend(request.headers || {}, AuthSrv.getAuthorizationHeaders() );
       });
     });
 
