@@ -6,10 +6,15 @@
     .provider('AuthConfig', AuthConfigProvider);
 
   function AuthConfigProvider() {
-    var uidKey = 'uid';
-    var tokenKey = 'token';
-    var uidHeaderName = 'X-User-Email';
-    var tokenHeaderName = 'X-User-Token';
+    var uidKey = 'uid',
+        tokenKey = 'token',
+        uidHeaderName = 'X-User-Email',
+        tokenHeaderName = 'X-User-Token',
+        localStoragePrefix = 'angularAuth';
+
+    this.setLocalStoragePrefix = function(value) {
+      localStoragePrefix = value;
+    };
 
     this.setTokenHeaderName = function(value) {
       tokenHeaderName = value;
@@ -28,6 +33,10 @@
     };
 
     function AuthConfig() {
+
+      this.getLocalStoragePrefix = function() {
+        return localStoragePrefix;
+      };
 
       this.getUidHeaderName = function() {
         return uidHeaderName;
