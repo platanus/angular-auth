@@ -1,22 +1,34 @@
 describe('Auth Config', function() {
   beforeEach(module('PlAuth'));
 
-  describe('setTokenHeaderName', function () {
+  describe('setLocalStoragePrefix', function () {
 
-    beforeEach(module(function(AuthConfigProvider) {
-      AuthConfigProvider.setTokenHeaderName('X-Admin-Token')
-    }));
+    describe('with default prefix', function () {
 
-    it('should change default token header name', inject(function(AuthConfig) {
-      expect(AuthConfig.getTokenHeaderName()).to.be.equal('X-Admin-Token');
-    }));
+      it('should change default local storage prefix', inject(function(AuthConfig) {
+        expect(AuthConfig.getLocalStoragePrefix()).to.be.equal('angularAuth');
+      }));
+
+    });
+
+    describe('overriding prefix', function () {
+
+      beforeEach(module(function(AuthConfigProvider) {
+        AuthConfigProvider.setLocalStoragePrefix('platanus');
+      }));
+
+      it('should change default local storage prefix', inject(function(AuthConfig) {
+        expect(AuthConfig.getLocalStoragePrefix()).to.be.equal('platanus');
+      }));
+
+    });
 
   });
 
   describe('setUidHeaderName', function () {
 
     beforeEach(module(function(AuthConfigProvider) {
-      AuthConfigProvider.setUidHeaderName('X-Admin-Email')
+      AuthConfigProvider.setUidHeaderName('X-Admin-Email');
     }));
 
     it('should change default uid header name', inject(function(AuthConfig) {

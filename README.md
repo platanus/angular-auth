@@ -58,6 +58,14 @@ angular.module('yourapp', ['PlAuth']).config(function(AuthConfigProvider){
 });
 ```
 
+You can change the default local storage prefix. If you don't, keys will be prefixed with `angularAuth`.
+
+```javascript
+angular.module('yourapp', ['PlAuth']).config(function(AuthConfigProvider){
+  AuthConfigProvider.setLocalStoragePrefix('myCustomPrefix');
+});
+```
+
 ## Live Demo
 
 Check out a live Demo using the library

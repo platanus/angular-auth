@@ -58,7 +58,7 @@ describe('AuthSrv', function() {
     it('stores the token', function() {
       var authData = {uid: 'charles@manson.com', token: 'XXX'};
       AuthSrv.store(authData);
-      expect(localStorage.getItem('token')).to.equal('XXX');
+      expect(localStorage.getItem('angularAuth.token')).to.equal('XXX');
     });
 
     it('throws an exception if is not an {}', function() {
@@ -68,7 +68,7 @@ describe('AuthSrv', function() {
     it('stores the uid', function() {
       var authData = {uid: 'charles@manson.com', token: ''};
       AuthSrv.store(authData);
-      expect(localStorage.getItem('uid')).to.equal('charles@manson.com');
+      expect(localStorage.getItem('angularAuth.uid')).to.equal('charles@manson.com');
     });
 
     it('throws an exception if only token was passed', function() {
