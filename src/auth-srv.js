@@ -20,13 +20,19 @@
     var uidHeaderName = AuthConfig.getUidHeaderName();
     var tokenKey = AuthConfig.getTokenKey();
     var uidKey = AuthConfig.getUidKey();
+    var uidRequired = AuthConfig.getUidRequired();
 
     return service;
 
     ////////////
 
     function isLogged() {
-      return (!!LocalDataSrv.getKey('uid') && !!LocalDataSrv.getKey('token'));
+      var logged = [];
+      if(uidRequired) {
+        logged.push(!!LocalDataSrv.getKey('uid'));
+      }
+      logged.push(!!LocalDataSrv.getKey('token'));
+      return logged.every(function(value){ return value === true; });
     }
 
     function isRegistered() {
@@ -35,7 +41,9 @@
 
     function getAuthorizationHeaders() {
       var headers = {};
-      headers[uidHeaderName] = LocalDataSrv.getKey('uid');
+      if(uidRequired) {
+        headers[uidHeaderName] = LocalDataSrv.getKey('uid');
+      }
       headers[tokenHeaderName] = LocalDataSrv.getKey('token');
       return headers;
     }
@@ -46,13 +54,13 @@
       }
 
       if (_authData[tokenKey]) {
-        if (!_authData[uidKey]) {
+        if (!_authData[uidKey] && uidRequired) {
           throw new Error('A uid is need');
         }
         LocalDataSrv.setKey('token', _authData[tokenKey]);
       }
 
-      if (_authData[uidKey]) {
+      if (_authData[uidKey] && uidRequired) {
         LocalDataSrv.setKey('uid', _authData[uidKey]);
       }
     }
