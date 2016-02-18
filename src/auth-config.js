@@ -10,7 +10,8 @@
         tokenKey = 'token',
         uidHeaderName = 'X-User-Email',
         tokenHeaderName = 'X-User-Token',
-        localStoragePrefix = 'angularAuth';
+        localStoragePrefix = 'angularAuth',
+        uidRequired = true;
 
     this.setLocalStoragePrefix = function(value) {
       localStoragePrefix = value;
@@ -30,6 +31,10 @@
 
     this.setTokenKey = function(value) {
       tokenKey = value;
+    };
+
+    this.setUidRequired = function(value) {
+      uidRequired = value;
     };
 
     function AuthConfig() {
@@ -53,6 +58,10 @@
       this.getTokenKey = function() {
         return tokenKey;
       };
+
+      this.getUidRequired = function() {
+        return uidRequired;
+      };
     }
 
     this.$get = function() {
@@ -60,4 +69,3 @@
     };
   }
 }());
-
