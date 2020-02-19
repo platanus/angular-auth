@@ -3,6 +3,12 @@ Angular Auth
 
 Library to help integrate Token Authentication between Angularjs and json API
 
+## Angular Auth is no longer maintained
+
+- We will leave the Issues open as a discussion forum only.
+- We do not guarantee a response from us in the Issues.
+- We are no longer accepting pull requests.
+
 ## Installation
 
 Install the bower package.
